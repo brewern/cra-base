@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import { Normalize, DefaultStyles } from './styles/index';
 
-function App() {
+const Main = lazy(() => import(/* webpackChunkName: "MainApp" */'./views/main/index'));
+
+const SuspenseRoute = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Route {...props} />
+    </Suspense>
+  )
+}
+
+/**
+ * Set default global CSS styles
+ * - Normalized stylesheets
+ * - Default app styles
+ */
+const GlobalStyle = createGlobalStyle`
+  ${Normalize}
+  ${DefaultStyles}
+`;
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <Switch>
+        <SuspenseRoute exact path="/" component={Main} />
+      </Switch>
+    </>
   );
 }
 
