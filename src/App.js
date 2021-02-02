@@ -3,8 +3,13 @@ import { createGlobalStyle } from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { Normalize, DefaultStyles } from './styles/index';
 
-const Main = lazy(() => import(/* webpackChunkName: "MainApp" */'./views/main/index'));
+// Lazy load path components
+const Main = lazy(
+  () => import(/* webpackChunkName: "MainApp" */'./views/main/index')
+  .then(module => ({ default: module.Main }))
+);
 
+// Wrap routes with suspense to simplify readability.
 const SuspenseRoute = (props) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
