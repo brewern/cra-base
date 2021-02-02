@@ -49,5 +49,10 @@
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.1.8",
     "source-map-explorer": "^2.5.2"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
+    ]
   }
 }
