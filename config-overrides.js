@@ -2,6 +2,8 @@ const {
   override,
 } = require("customize-cra");
 
+// TODO: add Antd design style overrides using the Less loader.
+
 // Split vendor dependencies into a separate chuncked file.
 const vendorsPlugin = (config, env) => {
   config.optimization = {
