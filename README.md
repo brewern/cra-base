@@ -9,6 +9,6 @@
     - fix babel imports for Lodash
 - Styled Components
 - Antd Components
-- React Apollo
+- React Apollo (TODO)
 - Typescript
-- Testing-Library
+- React Router DOM
